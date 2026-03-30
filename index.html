@@ -59,13 +59,6 @@ nav.up{height:62px;box-shadow:0 2px 24px rgba(7,21,20,.07)}
   background:url('assets/hero-bg.jpg') right center / contain no-repeat;
   background-color:var(--bg);
 }
-.bullets {
-    list-style: none;
-    display: inline-grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 16px;
-    margin-bottom: 38px;
-}
 .hero-wrap{max-width:1220px;margin:0 auto;width:100%}
 .hero-tag{
   display:inline-flex;align-items:center;gap:8px;
@@ -286,78 +279,85 @@ footer{background:var(--ink);padding:64px 5% 44px}
 }
 .grain > *{position:relative;z-index:2}
 
-/* ── VIDEO TESTIMONIALS ── */
+/* ── VIDEO TESTIMONIALS (carousel vt-*) ── */
 #testimonials{background:var(--ink);padding:100px 0;overflow:hidden}
-.tm-head{text-align:center;max-width:580px;margin:0 auto 56px;padding:0 5%}
-.tm-head h2.sh{color:var(--white)}
-/* marquee wrapper */
-.tm-marquee{position:relative;width:100%}
-.tm-marquee::before,.tm-marquee::after{
-  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+#testimonials .inner{max-width:1220px;margin:0 auto;padding:0 5%}
+.vt-head{text-align:center;max-width:580px;margin:0 auto 48px}
+.vt-head h2.sh{color:var(--white)}
+.vt-head .sp{margin-top:10px}
+.vt-stage{
+  display:flex;align-items:center;gap:10px;max-width:1100px;margin:0 auto;
 }
-.tm-marquee::before{left:0;background:linear-gradient(to right,var(--ink),transparent)}
-.tm-marquee::after{right:0;background:linear-gradient(to left,var(--ink),transparent)}
-.tm-track{
-  display:flex;gap:16px;
-  width:max-content;
-  animation:tmScroll 38s linear infinite;
+.vt-arrow{
+  flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);
+  color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s;
+}
+.vt-arrow:hover{background:rgba(0,157,150,.22);border-color:rgba(0,157,150,.45)}
+.vt-overflow{flex:1;min-width:0;overflow:hidden;cursor:grab;touch-action:pan-y}
+.vt-overflow:active{cursor:grabbing}
+.vt-track{
+  display:flex;align-items:stretch;gap:16px;
   will-change:transform;
 }
-.tm-marquee:hover .tm-track{animation-play-state:paused}
-@keyframes tmScroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
+.vt-card{
+  flex-shrink:0;width:240px;max-width:min(240px,calc((100vw - 120px) / 2.05));
+  aspect-ratio:9/16;border-radius:20px;overflow:hidden;
+  position:relative;cursor:pointer;background:#000;
+  transform:scale(.92);opacity:.55;
+  transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .4s ease,box-shadow .4s;
+  box-shadow:0 6px 28px rgba(0,0,0,.4);
 }
-/* card */
-.tm-card{
-  flex-shrink:0;width:260px;aspect-ratio:9/16;
-  border-radius:20px;overflow:hidden;position:relative;
-  cursor:pointer;
-  background-size:cover;background-position:center;
-  transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease;
+.vt-card.active{
+  transform:scale(1);opacity:1;z-index:2;
+  box-shadow:0 22px 70px rgba(0,0,0,.55);
 }
-.tm-card:hover{
-  transform:translateY(-8px) scale(1.05);
-  box-shadow:0 32px 80px rgba(0,0,0,.7);
+.vt-card video{
+  width:100%;height:100%;display:block;object-fit:cover;
 }
-/* bottom gradient + text */
-.tm-card-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.15) 45%,transparent 70%);
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:20px 18px;
+.vt-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(0,0,0,.68) 0%,transparent 50%);
+  display:flex;align-items:center;justify-content:center;
 }
-.tm-card-name{
-  color:#fff;font-size:15px;font-weight:800;line-height:1.2;margin-bottom:4px;
-}
-.tm-card-sub{
-  color:rgba(255,255,255,.6);font-size:12px;font-weight:500;line-height:1.3;
-}
-/* play button */
-.tm-play{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:56px;height:56px;border-radius:50%;
-  background:linear-gradient(135deg,#009D96 0%,#13D3B3 100%);
+.vt-play-btn{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal) 0%,#13D3B3 100%);
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 8px 24px rgba(0,157,150,.45);
-  transition:transform .3s ease,box-shadow .3s ease;
-  pointer-events:none;
 }
-.tm-card:hover .tm-play{
-  transform:translate(-50%,-50%) scale(1.12);
-  box-shadow:0 12px 36px rgba(0,157,150,.6);
+.vt-play-btn svg{width:22px;height:22px;fill:#fff;margin-left:4px}
+.vt-expand-hint{
+  position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:5px;
+  color:rgba(255,255,255,.88);font-size:11px;font-weight:600;
+  white-space:nowrap;text-shadow:0 1px 10px rgba(0,0,0,.85);
 }
-.tm-play svg{width:22px;height:22px;fill:white;margin-left:3px}
+.vt-expand-hint svg{width:13px;height:13px;opacity:.9;flex-shrink:0}
+.vt-dots{display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap}
+.vt-dot{
+  width:8px;height:8px;border-radius:50%;padding:0;border:none;
+  background:rgba(255,255,255,.2);cursor:pointer;transition:background .2s,transform .2s;
+}
+.vt-dot:hover{background:rgba(255,255,255,.35)}
+.vt-dot.active{background:var(--teal);transform:scale(1.2)}
+.vt-swipe-hint{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:14px;color:rgba(255,255,255,.28);font-size:12px;font-weight:500;
+}
+.vt-swipe-hint svg{width:15px;height:15px;opacity:.45}
+
+@media(max-width:700px){
+  #testimonials{padding:72px 0}
+  .vt-stage{gap:6px;padding:0 2px}
+  .vt-arrow{width:36px;height:36px}
+  .vt-card{width:200px;max-width:min(200px,42vw)}
+  .vt-expand-hint{font-size:10px;max-width:90%;white-space:normal;text-align:center;line-height:1.25}
+}
 
 @media(max-width:640px){
-  #testimonials{padding:72px 0}
-  .tm-card{width:200px}
-  .tm-marquee::before,.tm-marquee::after{width:60px}
-  /* modal ocupa tela toda em mobile */
-  .vmodal-inner{
-    width:92vw;
-    max-width:360px;
-  }
+  .vmodal-inner{width:92vw;max-width:360px}
 }
 
 /* ── VIDEO MODAL ── */
