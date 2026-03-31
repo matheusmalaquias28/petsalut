@@ -53,12 +53,11 @@ nav.up{height:62px;box-shadow:0 2px 24px rgba(7,21,20,.07)}
 
 /* ── HERO ── */
 #hero{
-  height:80vh;
+  min-height:100vh;
   display:flex;align-items:center;
-  padding:68px 5% 0;
+  padding:110px 5% 80px;
   background:url('assets/hero-bg.jpg') right center / contain no-repeat;
-  background-color: #F4F4F4;
-  overflow:hidden;
+  background-color:var(--bg);
 }
 .hero-wrap{max-width:1220px;margin:0 auto;width:100%}
 .hero-tag{
@@ -76,7 +75,7 @@ h1{
 }
 h1 em{font-style:normal;color:var(--teal)}
 .hero-sub{font-size:17px;color:var(--muted);max-width:480px;line-height:1.65;margin-bottom:30px}
-.bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:38px}
+.bullets{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:38px}
 .bullets li{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:500}
 .bullets li::before{
   content:'';width:20px;height:20px;flex-shrink:0;
@@ -127,7 +126,7 @@ h2.sh em{font-style:normal;color:var(--teal)}
 .sp{font-size:17px;color:var(--muted);line-height:1.7}
 
 /* ── PAIN (dark) ── */
-#pain{background:var(--ink);padding:0 5%;text-align:center;height:800px;display:flex;align-items:center;justify-content:center}
+#pain{background:var(--ink);padding:120px 5%;text-align:center}
 #pain .inner{max-width:740px;margin:0 auto}
 #pain .eyebrow{background:rgba(0,157,150,.18);color:var(--teal);margin-bottom:32px}
 #pain h2.sh{color:var(--white);margin-bottom:24px;font-size:clamp(34px,4.5vw,56px)}
@@ -270,39 +269,6 @@ footer{background:var(--ink);padding:64px 5% 44px}
 }
 .wa:hover{transform:scale(1.1)}
 .wa svg{width:28px;height:28px}
-
-/* ── PARCEIROS ESPECIAIS ── */
-#parceiros{padding:120px 5%}
-#parceiros .inner{max-width:1220px;margin:0 auto}
-#parceiros .pc-head{text-align:center;max-width:600px;margin:0 auto 60px}
-.pc-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
-}
-.pc-card{
-  background:var(--white);border:1.5px solid var(--line);
-  border-radius:20px;padding:32px 28px;
-  display:flex;flex-direction:column;align-items:flex-start;gap:16px;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
-}
-.pc-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,157,150,.1);border-color:rgba(0,157,150,.35)}
-.pc-logo{height:80px;width:auto;max-width:200px;object-fit:contain;display:block}
-.pc-name{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.3px;line-height:1.2}
-.pc-desc{font-size:13.5px;color:var(--muted);line-height:1.6;flex:1}
-.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
-.pc-tag{
-  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;
-  color:var(--teal);background:var(--teal-lt);
-  padding:3px 10px;border-radius:100px;
-}
-.pc-ig{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:12.5px;font-weight:600;color:var(--muted);text-decoration:none;
-  transition:color .2s;margin-top:auto;
-}
-.pc-ig:hover{color:var(--teal)}
-.pc-ig svg{width:14px;height:14px;flex-shrink:0}
 
 /* ── GRAIN TEXTURE ── */
 .grain{position:relative}
@@ -467,16 +433,8 @@ footer{background:var(--ink);padding:64px 5% 44px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1080px){
-  /* hero: conteúdo centralizado, sem overflow */
+  /* hero: coluna única, bg contain no tablet */
   .hero-wrap{max-width:660px}
-  #hero{
-    background-position:right top;
-    background-size:cover;
-    padding-top:96px;
-    padding-bottom:56px;
-    align-items:flex-end;
-  }
-  .hero-stats{gap:24px}
 
   /* solution: coluna única, visual acima do texto */
   #solution .sol-grid{grid-template-columns:1fr;max-width:660px}
@@ -487,17 +445,9 @@ footer{background:var(--ink);padding:64px 5% 44px}
 
   .feat-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:900px){
-  /* tablet médio: diff grid já em 2 colunas, padding reduzido */
-  .diff-card{padding:26px}
-  .diff-num{font-size:36px}
-  .pstats{gap:48px}
-}
 @media(max-width:700px){
   .s{padding:80px 5%}
   #pain,#includes,#proof,#cta{padding:80px 5%}
-  /* reset altura fixa no mobile */
-  #pain{height:auto;min-height:640px}
   nav{padding:0 4%;height:60px;gap:10px}
   nav.up{height:56px}
   .nav-logo{flex-shrink:0}
@@ -516,23 +466,16 @@ footer{background:var(--ink);padding:64px 5% 44px}
   .pstats{gap:36px}
   h1{letter-spacing:-1.8px}
 
-  /* hero mobile: altura fixa e conteúdo mais acima */
+  /* hero mobile: imagem vertical (1087×2442) — pets no topo ~24% da altura total */
+  /* ao 100vw largura: total height = 224.7vw → pets area ≈ 54vw + margem */
   #hero{
-    height:1100px;
-    overflow:hidden;
     background-image:url('assets/hero-bg-mobile.jpg');
-    background-size:cover;
+    background-size:100% auto;
     background-position:top center;
-    align-items:flex-end;
-    padding-top:112px;
-    padding-bottom:52px;
-  }
-  .hero-sub{font-size:16px;line-height:1.55}
-  .hero-stats{
-    gap:18px;
-    margin-top:24px;
-    padding-top:20px;
-    flex-wrap:wrap;
+    align-items:flex-start;
+    min-height:0;
+    padding-top:calc(58vw + 68px);
+    padding-bottom:60px;
   }
 
   /* solution: gap menor entre imagem e texto */
@@ -545,11 +488,6 @@ footer{background:var(--ink);padding:64px 5% 44px}
   .sol-badge strong{font-size:14px}
   .sol-badge span{font-size:12px}
 }
-
-@media (max-width:1000px) { 
-  .sol-vis img.si{aspect-ratio:1/1;border-radius:18px}
-} 
-
 </style>
 </head>
 <body>
@@ -677,94 +615,13 @@ footer{background:var(--ink);padding:64px 5% 44px}
       <div class="pstat r d2"><strong><em>+</em><span data-count="9" data-suffix=" anos">9 anos</span></strong><p>de atuação no Espírito Santo</p></div>
     </div>
     <div class="pdiv"></div>
-    
-  </div>
-</section>
-
-<!-- PARCEIROS ESPECIAIS -->
-<section id="parceiros">
-  <div class="inner">
-    <div class="pc-head">
-      <span class="eyebrow r">Parceiros Especiais</span>
-      <h2 class="sh r d2">Muito além do plano de saúde</h2>
-      <p class="sp r d3">Uma rede de parceiros cuidadosamente selecionados para oferecer o melhor para o seu pet.</p>
-    </div>
-    <div class="pc-grid">
-
-      <div class="pc-card r d1">
-        <img class="pc-logo" src="https://n8nn-zipline.ivljly.easypanel.host/u/rADWXp.png" alt="Academia Canina VIX K9"/>
-        <p class="pc-name">Academia Canina VIX — K9</p>
-        <p class="pc-desc">Especializada em comportamento canino com soluções personalizadas para o seu melhor amigo.</p>
-        <div class="pc-tags">
-          <span class="pc-tag">Adestramento</span>
-          <span class="pc-tag">Hospedagem</span>
-          <span class="pc-tag">Passeios</span>
-          <span class="pc-tag">Bike Dog</span>
-        </div>
-        <a class="pc-ig" href="https://www.instagram.com/agostinhoadestradordecaesk9" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @agostinhoadestradordecaesk9
-        </a>
-      </div>
-
-      <div class="pc-card r d2">
-        <img class="pc-logo" src="https://n8nn-zipline.ivljly.easypanel.host/u/AYaozH.png" alt="Carol Paulino Foto Pet"/>
-        <p class="pc-name">Carol Paulino — Foto Pet</p>
-        <p class="pc-desc">Especialista em registrar pets e famílias, capturando momentos mágicos e inesquecíveis.</p>
-        <div class="pc-tags">
-          <span class="pc-tag">Fotografia Pet</span>
-          <span class="pc-tag">Família</span>
-        </div>
-        <a class="pc-ig" href="https://www.instagram.com/carolpaulinofotopet" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @carolpaulinofotopet
-        </a>
-      </div>
-
-      <div class="pc-card r d3">
-        <img class="pc-logo" src="https://n8nn-zipline.ivljly.easypanel.host/u/DvEOaF.png" alt="Casa Gaia Centro de Treinamento"/>
-        <p class="pc-name">Casa Gaia — Centro de Treinamento</p>
-        <p class="pc-desc">Educação canina de maneira positiva, respeitando a individualidade de cada pet.</p>
-        <div class="pc-tags">
-          <span class="pc-tag">Treinamento</span>
-          <span class="pc-tag">Passeios</span>
-          <span class="pc-tag">Pet Sitter</span>
-        </div>
-        <a class="pc-ig" href="https://www.instagram.com/casagaiact" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @casagaiact
-        </a>
-      </div>
-
-      <div class="pc-card r d4">
-        <img class="pc-logo" src="https://n8nn-zipline.ivljly.easypanel.host/u/KttnXG.png" alt="Casa Gaia Pet Hotel"/>
-        <p class="pc-name">Casa Gaia — Pet Hotel &amp; Day Care</p>
-        <p class="pc-desc">Serviço diferenciado com qualidade e diversão para o seu pet se sentir em casa.</p>
-        <div class="pc-tags">
-          <span class="pc-tag">Hospedagem</span>
-          <span class="pc-tag">Day Care</span>
-          <span class="pc-tag">Banho</span>
-        </div>
-        <a class="pc-ig" href="https://www.instagram.com/casagaiapet" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @casagaiapet
-        </a>
-      </div>
-
-      <div class="pc-card r d5">
-        <img class="pc-logo" src="https://n8nn-zipline.ivljly.easypanel.host/u/l7yPnR.png" alt="Céu de Patas Crematório Pet"/>
-        <p class="pc-name">Céu de Patas — Crematório Pet</p>
-        <p class="pc-desc">Oferece plano emergencial e preventivo, cuidando do seu pet com respeito e carinho mesmo nos momentos mais difíceis.</p>
-        <div class="pc-tags">
-          <span class="pc-tag">Cremação</span>
-          <span class="pc-tag">Plano Emergencial</span>
-        </div>
-        <a class="pc-ig" href="https://www.instagram.com/ceudepatascrematoriopet/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          @ceudepatascrematoriopet
-        </a>
-      </div>
-
+    <p class="plabel r">Parcerias</p>
+    <div class="prow r d2">
+      <div class="ppill"><img src="https://n8nn-zipline.ivljly.easypanel.host/u/rADWXp.png" alt="Academia Canina VIX K9"/></div>
+      <div class="ppill"><img src="https://n8nn-zipline.ivljly.easypanel.host/u/AYaozH.png" alt="Carol Paulino"/></div>
+      <div class="ppill"><img src="https://n8nn-zipline.ivljly.easypanel.host/u/DvEOaF.png" alt="Casa Gaia Treinamento"/></div>
+      <div class="ppill"><img src="https://n8nn-zipline.ivljly.easypanel.host/u/KttnXG.png" alt="Casa Gaia Pet Hotel"/></div>
+      <div class="ppill"><img src="https://n8nn-zipline.ivljly.easypanel.host/u/l7yPnR.png" alt="Céu de Patas"/></div>
     </div>
   </div>
 </section>
