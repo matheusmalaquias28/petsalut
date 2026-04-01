@@ -15,7 +15,9 @@
   --teal:#009D96;
   --teal-dk:#007a74;
   --teal-lt:#e0f5f4;
-  --ink:#071514;
+  --accent:#A51437;
+  --accent-dk:#8a1030;
+  --ink:#1A1A2E;
   --ink2:#0d2321;
   --muted:#4a6e6c;
   --line:#d5e8e7;
@@ -41,24 +43,27 @@ nav.up{height:62px;box-shadow:0 2px 24px rgba(7,21,20,.07)}
 .nav-menu a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
 .nav-menu a:hover{color:var(--teal)}
 .nav-btn{
-  background:var(--ink);color:var(--white)!important;
+  background:var(--accent);color:var(--white)!important;
   padding:10px 22px!important;border-radius:100px;
   font-weight:700!important;font-size:14px!important;
   transition:background .2s,transform .15s!important;
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
 }
-.nav-btn:hover{background:var(--teal)!important;transform:translateY(-1px)}
+.nav-btn:hover{background:var(--accent-dk)!important;transform:translateY(-1px)}
 .nav-btn .ico-wa{width:18px;height:18px;flex-shrink:0;display:none}
 .nav-btn .label-short{display:none}
 
 /* ── HERO ── */
 #hero{
-  height:90vh;
-  display:flex;align-items:center;
-  padding:188px 5% 0;
+  --nav-h:68px;
+  min-height:min(90vh,920px);
+  height:auto;
+  display:flex;align-items:flex-start;
+  padding:calc(var(--nav-h) + 28px) 5% 48px;
   background:url('assets/hero-bg.jpg') right center / contain no-repeat;
-  background-color: #F4F4F4;
-  overflow:hidden;
+  background-color:#F4F4F4;
+  overflow-x:hidden;
+  overflow-y:visible;
 }
 .hero-wrap{max-width:1220px;margin:0 auto;width:100%}
 .hero-tag{
@@ -127,11 +132,11 @@ h2.sh em{font-style:normal;color:var(--teal)}
 .sp{font-size:17px;color:var(--muted);line-height:1.7}
 
 /* ── PAIN (dark) ── */
-#pain{background:var(--ink);padding:0 5%;text-align:center;height:800px;display:flex;align-items:center;justify-content:center}
+#pain{background:#FFEAEF;padding:0 5%;text-align:center;height:800px;display:flex;align-items:center;justify-content:center}
 #pain .inner{max-width:740px;margin:0 auto}
-#pain .eyebrow{background:rgba(0,157,150,.18);color:var(--teal);margin-bottom:32px}
-#pain h2.sh{color:var(--white);margin-bottom:24px;font-size:clamp(34px,4.5vw,56px)}
-#pain .sp{color:rgba(255,255,255,.45);font-size:18px}
+#pain .eyebrow{background:rgba(165,20,55,.12);color:var(--accent);margin-bottom:32px}
+#pain h2.sh{color:var(--ink);margin-bottom:24px;font-size:clamp(34px,4.5vw,56px)}
+#pain .sp{color:#000;font-size:18px}
 
 /* ── SOLUTION ── */
 #solution .sol-grid{
@@ -151,26 +156,27 @@ h2.sh em{font-style:normal;color:var(--teal)}
 .sol-badge span{font-size:12.5px;color:var(--muted)}
 
 /* ── INCLUDES (dark) ── */
-#includes{background:var(--ink2);padding:120px 5%}
+#includes{background:#C7E7E8;padding:120px 5%}
 #includes .inner{max-width:1220px;margin:0 auto}
-#includes h2.sh{color:var(--white)}
-#includes .sp{color:rgba(255,255,255,.4);margin-bottom:56px}
+#includes h2.sh{color:var(--ink)}
+#includes .sp{color:#000;margin-bottom:56px}
+#includes .feat-card p{color:#000}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .feat-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
+  background:#fff;
+  border:1px solid var(--line);
   border-radius:22px;padding:30px;
   display:flex;flex-direction:column;gap:14px;
-  transition:background .25s,border-color .25s;cursor:default;
+  transition:background .25s,border-color .25s,box-shadow .25s;cursor:default;
 }
-.feat-card:hover{background:rgba(0,157,150,.09);border-color:rgba(0,157,150,.28)}
+.feat-card:hover{background:#fff;border-color:var(--teal);box-shadow:0 8px 32px rgba(0,157,150,.12)}
 .feat-ico{
   width:50px;height:50px;border-radius:13px;
-  background:rgba(0,157,150,.16);
+  background:rgba(0,157,150,.12);
   display:flex;align-items:center;justify-content:center;font-size:22px;
 }
-.feat-card h3{font-size:16.5px;font-weight:700;color:var(--white)}
-.feat-card p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.6}
+.feat-card h3{font-size:16.5px;font-weight:700;color:var(--ink)}
+.feat-card p{font-size:14px;color:var(--muted);line-height:1.6}
 
 /* ── DIFFERENTIALS ── */
 #diff .inner{max-width:1220px;margin:0 auto}
@@ -187,27 +193,27 @@ h2.sh em{font-style:normal;color:var(--teal)}
 .diff-card p{font-size:15px;color:var(--muted);line-height:1.65}
 
 /* ── PROOF (dark) ── */
-#proof{background:var(--ink);padding:120px 5%}
+#proof{background:#FFEAEF;padding:120px 5%}
 #proof .inner{max-width:1220px;margin:0 auto}
-#proof h2.sh{color:var(--white)}
+#proof h2.sh{color:var(--ink)}
 .pstats{display:flex;gap:80px;margin:56px 0;flex-wrap:wrap}
 .pstat strong{
   font-size:clamp(54px,7vw,88px);font-weight:800;
-  color:var(--white);letter-spacing:-4px;line-height:1;display:block;
+  color:var(--ink);letter-spacing:-4px;line-height:1;display:block;
 }
 .pstat strong em{font-style:normal;color:var(--teal)}
-.pstat p{font-size:16px;color:rgba(255,255,255,.4);margin-top:8px}
-.pdiv{height:1px;background:rgba(255,255,255,.07);margin-bottom:48px}
-.plabel{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.28);margin-bottom:22px}
+.pstat p{font-size:16px;color:var(--muted);margin-top:8px}
+.pdiv{height:1px;background:var(--line);margin-bottom:48px}
+.plabel{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:22px}
 .prow{display:flex;gap:10px;flex-wrap:wrap}
 .ppill{
   display:flex;align-items:center;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  background:var(--white);border:1px solid var(--line);
   border-radius:100px;padding:10px 20px;
   transition:background .2s,border-color .2s;
 }
-.ppill:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15)}
-.ppill img{height:26px;filter:brightness(0) invert(1);opacity:.5;display:block}
+.ppill:hover{background:var(--teal-lt);border-color:var(--teal)}
+.ppill img{height:26px;filter:none;opacity:.8;display:block}
 
 /* ── FAQ ── */
 #faq .inner{max-width:800px;margin:0 auto}
@@ -249,17 +255,17 @@ h2.sh em{font-style:normal;color:var(--teal)}
 .btn-white:hover{transform:translateY(-2px);box-shadow:0 14px 52px rgba(0,0,0,.24)}
 
 /* ── FOOTER ── */
-footer{background:var(--ink);padding:64px 5% 44px}
+footer{background:#FFEAEF;padding:64px 5% 44px}
 .foot-inner{max-width:1220px;margin:0 auto}
-.foot-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07)}
-.foot-brand img{height:34px;width:auto;display:block;margin-bottom:14px;mix-blend-mode:screen;opacity:.85}
-.foot-brand p{font-size:14px;color:rgba(255,255,255,.3);line-height:1.65;max-width:240px}
-.foot-col h4{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.28);margin-bottom:18px}
+.foot-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.foot-brand img{height:34px;width:auto;display:block;margin-bottom:14px;mix-blend-mode:normal;opacity:1}
+.foot-brand p{font-size:14px;color:var(--muted);line-height:1.65;max-width:240px}
+.foot-col h4{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:18px}
 .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
-.foot-col ul a{color:rgba(255,255,255,.45);text-decoration:none;font-size:14px;transition:color .2s}
+.foot-col ul a{color:var(--ink);text-decoration:none;font-size:14px;transition:color .2s}
 .foot-col ul a:hover{color:var(--teal)}
 .foot-bottom{max-width:1220px;margin:32px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.foot-bottom p{font-size:13px;color:rgba(255,255,255,.22)}
+.foot-bottom p{font-size:13px;color:var(--muted)}
 
 /* ── WA FLOAT ── */
 .wa{
@@ -314,21 +320,21 @@ footer{background:var(--ink);padding:64px 5% 44px}
 .grain > *{position:relative;z-index:2}
 
 /* ── VIDEO TESTIMONIALS (carousel vt-*) ── */
-#testimonials{background:var(--ink);padding:100px 0;overflow:hidden}
+#testimonials{background:#C7E7E8;padding:100px 0;overflow:hidden}
 #testimonials .inner{max-width:1220px;margin:0 auto;padding:0 5%}
 .vt-head{text-align:center;max-width:580px;margin:0 auto 48px}
-.vt-head h2.sh{color:var(--white)}
-.vt-head .sp{margin-top:10px}
+.vt-head h2.sh{color:var(--ink)}
+.vt-head .sp{margin-top:10px;color:#000}
 .vt-stage{
   display:flex;align-items:center;gap:10px;max-width:1100px;margin:0 auto;
 }
 .vt-arrow{
   flex-shrink:0;width:44px;height:44px;border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);
-  color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background .2s,border-color .2s;
+  border:1.5px solid rgba(26,26,46,.15);background:rgba(255,255,255,.7);
+  color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,color .2s;
 }
-.vt-arrow:hover{background:rgba(0,157,150,.22);border-color:rgba(0,157,150,.45)}
+.vt-arrow:hover{background:var(--teal);border-color:var(--teal);color:#fff}
 .vt-overflow{flex:1;min-width:0;overflow:hidden;cursor:grab;touch-action:pan-y}
 .vt-overflow:active{cursor:grabbing}
 .vt-track{
@@ -372,15 +378,15 @@ footer{background:var(--ink);padding:64px 5% 44px}
 .vt-dots{display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap}
 .vt-dot{
   width:8px;height:8px;border-radius:50%;padding:0;border:none;
-  background:rgba(255,255,255,.2);cursor:pointer;transition:background .2s,transform .2s;
+  background:rgba(26,26,46,.2);cursor:pointer;transition:background .2s,transform .2s;
 }
-.vt-dot:hover{background:rgba(255,255,255,.35)}
+.vt-dot:hover{background:rgba(26,26,46,.35)}
 .vt-dot.active{background:var(--teal);transform:scale(1.2)}
 .vt-swipe-hint{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  margin-top:14px;color:rgba(255,255,255,.28);font-size:12px;font-weight:500;
+  margin-top:14px;color:rgba(26,26,46,.45);font-size:12px;font-weight:500;
 }
-.vt-swipe-hint svg{width:15px;height:15px;opacity:.45}
+.vt-swipe-hint svg{width:15px;height:15px;opacity:.5;filter:invert(1) brightness(0)}
 
 @media(max-width:700px){
   #testimonials{padding:72px 0}
@@ -467,14 +473,14 @@ footer{background:var(--ink);padding:64px 5% 44px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1080px){
-  /* hero: conteúdo centralizado, sem overflow */
+  /* hero: texto sempre abaixo do header; bloco cresce com o conteúdo */
   .hero-wrap{max-width:660px}
   #hero{
+    min-height:auto;
     background-position:right top;
     background-size:cover;
-    padding-top:96px;
-    padding-bottom:56px;
-    align-items:flex-end;
+    padding:calc(var(--nav-h) + 24px) 5% 40px;
+    align-items:flex-start;
   }
   .hero-stats{gap:24px}
 
@@ -492,6 +498,26 @@ footer{background:var(--ink);padding:64px 5% 44px}
   .diff-card{padding:26px}
   .diff-num{font-size:36px}
   .pstats{gap:48px}
+  #hero{
+    padding-bottom:36px;
+  }
+  #hero h1{font-size:clamp(34px,5.5vw,46px);margin-bottom:18px}
+  .hero-sub{margin-bottom:22px}
+  .bullets{margin-bottom:28px}
+  .hero-stats{margin-top:28px;padding-top:24px}
+}
+
+/* laptops / janelas baixas: hero não força altura mínima grande */
+@media(max-width:1200px) and (max-height:800px){
+  #hero{
+    min-height:0;
+    padding:calc(var(--nav-h) + 16px) 5% 28px;
+  }
+  #hero h1{font-size:clamp(30px,4.2vw,42px);margin-bottom:14px;letter-spacing:-1.5px}
+  .hero-sub{font-size:16px;margin-bottom:16px}
+  .bullets{margin-bottom:20px;gap:8px}
+  .hero-stats{margin-top:20px;padding-top:16px}
+  .btn-teal{padding:14px 24px;font-size:14px}
 }
 @media(max-width:700px){
   .s{padding:80px 5%}
@@ -500,6 +526,7 @@ footer{background:var(--ink);padding:64px 5% 44px}
   #pain{height:auto;min-height:640px}
   nav{padding:0 4%;height:60px;gap:10px}
   nav.up{height:56px}
+  #hero{--nav-h:60px}
   .nav-logo{flex-shrink:0}
   .nav-logo img{height:26px}
   .nav-menu{gap:0;margin-left:auto}
@@ -516,16 +543,17 @@ footer{background:var(--ink);padding:64px 5% 44px}
   .pstats{gap:36px}
   h1{letter-spacing:-1.8px}
 
-  /* hero mobile: altura fixa e conteúdo mais acima */
+  /* hero mobile: altura mínima + fluxo que não sobrepõe marquee */
   #hero{
-    height:1100px;
-    overflow:hidden;
+    min-height:700px;
+    height:auto;
+    overflow-x:hidden;
+    overflow-y:visible;
     background-image:url('assets/hero-bg-mobile.jpg');
     background-size:cover;
     background-position:top center;
-    align-items:flex-end;
-    padding-top:112px;
-    padding-bottom:52px;
+    align-items:flex-start;
+    padding:calc(var(--nav-h) + 20px) 5% 44px;
   }
   .hero-sub{font-size:16px;line-height:1.55}
   .hero-stats{
@@ -613,7 +641,7 @@ footer{background:var(--ink);padding:64px 5% 44px}
   <div class="inner">
     <span class="eyebrow r d1">A realidade</span>
     <h2 class="sh r d2">Nem sempre o problema<br/>é só a saúde.<br/>É também o custo <em>inesperado</em>.</h2>
-    <p class="sp r d3" style="font-size:18px;color:rgba(255,255,255,.45)">Uma consulta, um exame, um atendimento de urgência —<br/>e o valor final pode sair completamente do controle.</p>
+    <p class="sp r d3">Uma consulta, um exame, um atendimento de urgência —<br/>e o valor final pode sair completamente do controle.</p>
   </div>
 </section>
 
@@ -645,7 +673,7 @@ footer{background:var(--ink);padding:64px 5% 44px}
   <div class="inner">
     <span class="eyebrow dim r">O que está incluído</span>
     <h2 class="sh r d2">Dependendo do plano,<br/>você conta com:</h2>
-    <p class="sp r d3" style="color:rgba(255,255,255,.4);margin-bottom:52px">Tudo organizado para incentivar o cuidado preventivo — não apenas resolver problemas quando eles aparecem.</p>
+    <p class="sp r d3" style="margin-bottom:52px">Tudo organizado para incentivar o cuidado preventivo — não apenas resolver problemas quando eles aparecem.</p>
     <div class="feat-grid">
       <div class="feat-card r d1"><div class="feat-ico">🩺</div><h3>Consultas veterinárias</h3><p>Acesso a consultas com veterinários da rede credenciada, sem custo adicional.</p></div>
       <div class="feat-card r d2"><div class="feat-ico">🔬</div><h3>Exames laboratoriais e de imagem</h3><p>Diagnósticos completos incluídos no plano.</p></div>
@@ -764,7 +792,7 @@ footer{background:var(--ink);padding:64px 5% 44px}
     <div class="vt-head">
       <span class="eyebrow dim r">Depoimentos em vídeo</span>
       <h2 class="sh r d2">Quem já usa, <em>fala</em></h2>
-      <p class="sp r d3" style="color:rgba(255,255,255,.45)">Histórias reais de tutores que escolheram cuidar melhor do seu pet.</p>
+      <p class="sp r d3">Histórias reais de tutores que escolheram cuidar melhor do seu pet.</p>
     </div>
 
     <div class="vt-stage r d3">
